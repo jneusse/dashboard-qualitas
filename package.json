@@ -13,7 +13,7 @@
         "axios": "^0.19",
         "bootstrap": "^4.0.0",
         "cross-env": "^7.0",
-        "jquery": "^3.2",
+        "jquery": "^3.5.1",
         "laravel-mix": "^5.0.1",
         "lodash": "^4.17.19",
         "popper.js": "^1.12",
@@ -24,6 +24,11 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "materialize-css": "^1.0.0-rc.2"
+        "@sweetalert2/theme-material-ui": "^4.0.0",
+        "element-ui": "^2.13.2",
+        "materialize-css": "^1.0.0-rc.2",
+        "sweetalert2": "^10.3.5",
+        "vue-router": "^3.4.3",
+        "vuesax": "^4.0.1-alpha.25"
     }
 }

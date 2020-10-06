@@ -69,7 +69,7 @@
     </div>
 </div>
 
-@section('script')
+{{-- @section('script') --}}
    <script>
     $(document).ready(function(){
         var modalLogin = M.Modal.getInstance($('#modal1'));
@@ -81,4 +81,4 @@
     })
 
     </script>
-@show
+{{-- @show --}}

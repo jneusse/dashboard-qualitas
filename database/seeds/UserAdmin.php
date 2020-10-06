@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\User;
+use Carbon\Carbon;
 
 class UserAdmin extends Seeder
 {
@@ -14,9 +15,8 @@ class UserAdmin extends Seeder
     {
         User::truncate();
 
-        date_default_timezone_set('America/Mexico_City');
-        $dateTime = date('d-m-Y H:i');
-        $session_expire_on = strtotime('+15 minutes', strtotime($dateTime));
+        $dateTime = Carbon::now();
+        $session_expire_on = $dateTime;
 
         $admin = User::create([
             'name' => 'Kranon Admin',

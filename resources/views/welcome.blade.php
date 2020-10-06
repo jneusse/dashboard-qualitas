@@ -39,9 +39,9 @@
     <body>
         <nav>
           <div class="nav-wrapeper">
-            <a href="#" class="brand-logo">{{ config('app.name', 'Laravel') }}</a>
+            {{-- <a href="#" class="brand-logo">{{ config('app.name', 'Laravel') }}</a> --}}
             @if (Route::has('login'))
-              <ul id="nav-mobile" class="right hide-on-med-and-down">
+              <ul id="nav-mobile" class="right">
                 <li><a class="nav-link modal-trigger" data-target="modal1" href="#modal1">{{ __('Login') }}</a></li>
                 @if (Route::has('register'))
                   <li><a href="{{ route('register') }}">Register</a></li>
@@ -60,8 +60,6 @@
 
         @include('auth.login')
         <div id="app">
-
         </div>
-
     </body>
 </html>

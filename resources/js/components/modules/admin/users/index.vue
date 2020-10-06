@@ -7,8 +7,8 @@
                         <h5>Usuarios</h5>
                     </div>
                     <div class="col right">
-                            <el-tooltip class="item" effect="dark" content="Agregar usuario" placement="bottom-end">
-                                <a class="btn-floating" @click.prevent="showModalCreate = !showModalCreate"><i class="material-icons">add_circle</i></a>
+                            <el-tooltip class="item modal-trigger" data-target="modalCreate" effect="dark" content="Agregar usuario" placement="bottom-end">
+                                <a class="btn-floating"><i class="material-icons">add_circle</i></a>
                             </el-tooltip>
                             <el-tooltip class="item" effect="dark" content="Buscar" placement="bottom-end">
                                 <a class="btn-floating" @click.prevent="showSearchInput = !showSearchInput"><i class="material-icons">search</i></a>
@@ -55,7 +55,7 @@
                                     <td v-text="item.status" :class="[item.status == 'Online' ? 'green-text' : 'red-text']"></td>
                                     <td>
                                         <vs-tooltip>
-                                            <el-button type="primary" data-target="#modalEdit" :plain="true" size="mini" @click.prevent="showEditUser(item)">
+                                            <el-button type="primary"  class="modal-trigger" data-target="modalEdit" :plain="true" size="mini" @click.prevent="showEditUser(item)">
                                                 <i class="tiny material-icons">edit</i>
                                             </el-button>
                                             <template #tooltip>
@@ -85,10 +85,10 @@
             </div>
         </div>
         <!-- MODAL EDITAR -->
-        <div class="modal modal-edit-user" :class="showModalEdit ? 'modal-open' : ''">
+        <div class="modal modal-edit-user" id="modalEdit">
             <div class="modal-content">
                 <h5>Editar Usuario: {{modalEditName}}</h5>
-                <form>
+                <form autocomplete="on">
                     <div class="row">
                         <div class="col s12">
                             <div class="input-field">
@@ -122,7 +122,7 @@
                         <div class="col s12">
                             <div class="input-field">
                                 <i class="material-icons prefix">mode_edit</i>
-                                <input type="password" v-model="formEditUser.password" placeholder="********">
+                                <input type="password" v-model="formEditUser.password" placeholder="********" autocomplete="on">
                                 <template v-if="formEditUser.password && formEditUser.password.length < 8">
                                     <span class="new badge red" data-badge-caption="Contraseña debe ser al menos 8 caracteres" role="alert"></span>
                                 </template>
@@ -136,7 +136,7 @@
                         <div class="col s12">
                             <div class="input-field">
                                 <i class="material-icons prefix">mode_edit</i>
-                                <input type="password" v-model="formEditUser.passwordConfirm" :disabled="(formEditUser.password.length > 7) ? false: true"  placeholder="********">
+                                <input type="password" v-model="formEditUser.passwordConfirm" :disabled="(formEditUser.password.length > 7) ? false: true"  placeholder="********" autocomplete="on">
                                 <template v-if="formEditUser.passwordConfirm && formEditUser.passwordConfirm.length > 7 && formEditUser.password !== formEditUser.passwordConfirm">
                                     <span class="new badge red" data-badge-caption="Las contraseñas no coinciden" role="alert"></span>
                                 </template>
@@ -163,7 +163,7 @@
                 <div class="row">
                     <div class="col s6">
                         <div class="input-field left">
-                            <a class="btn grey" @click.prevent="showModalEdit = false">Cancelar</a>
+                            <a class="btn grey modal-close">Cancelar</a>
                         </div>
                     </div>
                     <div class="col s6">
@@ -179,10 +179,10 @@
         </div>
 
                 <!-- MODAL CREATE -->
-        <div class="modal modal-edit-user" :class="showModalCreate ? 'modal-open' : ''">
+        <div class="modal modal-edit-user" id="modalCreate">
             <div class="modal-content">
                 <h5>Crear Usuario</h5>
-                <form>
+                <form autocomplete="on">
                     <div class="row">
                         <div class="col s12">
                             <div class="input-field">
@@ -216,7 +216,7 @@
                         <div class="col s12">
                             <div class="input-field">
                                 <i class="material-icons prefix">mode_edit</i>
-                                <input id="formCreate_password" type="password" v-model="formCreateUser.password" placeholder="********">
+                                <input id="formCreate_password" type="password" v-model="formCreateUser.password" placeholder="********" autocomplete="on">
                                 <template v-if="formCreateUser.password && formCreateUser.password.length < 8">
                                     <span class="new badge red" data-badge-caption="Contraseña debe ser al menos 8 caracteres" role="alert"></span>
                                 </template>
@@ -230,7 +230,7 @@
                         <div class="col s12">
                             <div class="input-field">
                                 <i class="material-icons prefix">mode_edit</i>
-                                <input id="formCreateUser_password-confirm" type="password" v-model="formCreateUser.passwordConfirm" :disabled="(formCreateUser.password.length > 7) ? false: true"  placeholder="********">
+                                <input id="formCreateUser_password-confirm" type="password" v-model="formCreateUser.passwordConfirm" :disabled="(formCreateUser.password.length > 7) ? false: true"  placeholder="********" autocomplete="on">
                                 <template v-if="formCreateUser.passwordConfirm && formCreateUser.passwordConfirm.length > 7 && formCreateUser.password !== formCreateUser.passwordConfirm">
                                     <span class="new badge red" data-badge-caption="Las contraseñas no coinciden" role="alert"></span>
                                 </template>
@@ -257,7 +257,7 @@
                 <div class="row">
                     <div class="col s6">
                         <div class="input-field left">
-                            <a class="btn grey" @click.prevent="showModalCreate = false">Cancelar</a>
+                            <a class="btn grey">Cancelar</a>
                         </div>
                     </div>
                     <div class="col s6">
@@ -298,8 +298,6 @@ export default {
                 'next_page_url': '',
                 'path': '',
             },
-            showModalCreate: false,
-            showModalEdit: false,
             userSearch: '',
             showSearchInput: false,
             formEditUser:{
@@ -319,11 +317,14 @@ export default {
                 password: '',
                 passwordConfirm: '',
             },
-            errorCreateUser: ''
+            errorCreateUser: '',
+            modalEdit: '',
+            modalCreate: ''
         }
     },
     mounted(){
         this.getUsers()
+        M.AutoInit();
     },
     computed:{
         validEmail() {
@@ -383,7 +384,7 @@ export default {
                     })
                     .catch( err => {
                         console.log(err.response);
-                        if(error.response.status == 401){
+                        if(err.response.status == 401){
                             localStorage.clear()
                             this.$router.push({name: 'login'})
                             location.reload()
@@ -395,7 +396,6 @@ export default {
             }
         },
         showEditUser(item){
-            this.showModalEdit = !this.showModalEdit
             this.formEditUser.id = item.id
             this.modalEditName = item.name
             this.formEditUser.name = item.name
@@ -429,7 +429,7 @@ export default {
                         }
                     })
                     .catch( err => {
-                        if(error.response.status == 401){
+                        if(err.response.status == 401){
                             localStorage.clear()
                             this.$router.push({name: 'login'})
                             location.reload()
@@ -438,6 +438,7 @@ export default {
             })
         },
         setEditUser(){
+            this.modalEdit = M.Modal.getInstance($('#modalEdit'));
             this.fullscreenLoading = true
             let url = '/admin/users/edit'
             let params = {
@@ -452,19 +453,19 @@ export default {
                 .then( res => {
                     this.fullscreenLoading = false
                     if(res.data.save == 'OK'){
+                        this.modalEdit.close()
                         Swal.fire({
                             title: 'Usuario guardado exitosamente',
                             timer: 1500,
                             icon: 'success'
                         })
-                        this.showModalEdit = false
                         this.getUsers(this.pagination.current_page)
                     }else if(res.data.save == 'error'){
                         this.errorEditUser = res.data.errors.email[0]
                     }
                 })
                 .catch( err => {
-                    if(error.response.status == 401){
+                    if(err.response.status == 401){
                         localStorage.clear()
                         this.$router.push({name: 'login'})
                         location.reload()
@@ -497,7 +498,7 @@ export default {
                     }
                 })
                 .catch( err => {
-                    if(error.response.status == 401){
+                    if(err.response.status == 401){
                         localStorage.clear()
                         this.$router.push({name: 'login'})
                         location.reload()
@@ -505,7 +506,8 @@ export default {
                 })
         },
         closeModalEdit(){
-            this.showModalCreate = false
+            this.modalCreate = M.Modal.getInstance($('#modalCreate'));
+            this.modalCreate.close()
             this.formCreateUser.name = ''
             this.formCreateUser.email = ''
             this.formCreateUser.password = ''

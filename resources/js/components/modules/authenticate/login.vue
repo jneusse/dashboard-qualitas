@@ -106,7 +106,9 @@ export default {
                         console.log('email');
                         this.spanMessage = err.response.data.errors.email[0]
                     }else if(err.response.status == 419){
-                        this.spanMessage = 'Error Por favor recargue la página'
+                        console.log(err.response.status, 419);
+                        alert('Su session a expirado. La página será recargada')
+                        location.reload()
                     }
                 })
         },

@@ -5,7 +5,7 @@
  */
 
 // require('./bootstrap');
-require('jquery')
+window.$ = require('jquery')
 window.Vue = require('vue');
 window.axios = require('axios');
 require('materialize-css');
@@ -43,6 +43,7 @@ Vue.component('Auth', require('./components/Auth.vue').default);
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+require('./material.js')
 import router from './routes'
 const app = new Vue({
     el: '#app',
@@ -54,5 +55,12 @@ window.EventBus = EventBus
 
 M.AutoInit();
 
+
 document.addEventListener('DOMContentLoaded', function() {
+    // window.addEventListener('click', function(e){
+    //     if(e.target == document.querySelector('#modalCreate'))
+    //     document.querySelector('#modalCreate').style.display = 'none'
+    //     console.log("click");
+    // })
+    // console.log(document.querySelector('#modalCreate'));
 });

@@ -22,10 +22,27 @@ td{
     max-height: 80% !important;
     overflow-y: unset;
 }
-.modal-open{
+.modal{
     z-index: 1003;
-    display: block;
+    // display: block;
     opacity: 1;
     top: 10%;
     transform: scaleX(1) scaleY(1);
+    height: 100%;
+    width: 100%;
+    overflow-y: unset;
+}
+.modal-overlay {
+    position: fixed;
+    z-index: 999;
+    top: -25%;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 125%;
+    width: 100%;
+    background: #c3c3c3;
+    display: none;
+    will-change: opacity;
+    opacity: .9;
 }

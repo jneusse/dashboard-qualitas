@@ -239,24 +239,24 @@ class UsersController extends Controller
         }
         $user->save();
 
-        $dateTime = date('d-m-Y H:i');
-            $session_expire_on =  date('d-m-Y H:i', $user->session_expire_on);
-            //verificamos si hay session abierta ..
-            if( $user->status == true){
-                //verificamos si no expiro la session..
-                if( $session_expire_on > $dateTime ){
-                    $user->status = "Online";
-                    $user->session_expire_on = $session_expire_on;
-                //Si expira la session..
-                }else{
-                    $user->status = "Offline";
-                    $user->session_expire_on = "Cierre de sesión incorrecto";
-                }
-            //Si esta cerrada ..
-            }else{
-                $user->status = "Offline";
-                $user->session_expire_on = "N/A";
-            }
+            // $dateTime= Carbon::now();
+            // $session_expire_on =  $user->session_expire_on;
+            // //verificamos si hay session abierta ..
+            // if( $user->status == true){
+            //     //verificamos si no expiro la session..
+            //     if( $session_expire_on > $dateTime ){
+            //         $user->status = "Online";
+            //         $user->session_expire_on = $session_expire_on;
+            //     //Si expira la session..
+            //     }else{
+            //         $user->status = "Offline";
+            //         $user->session_expire_on = "Cierre de sesión incorrecto";
+            //     }
+            // //Si esta cerrada ..
+            // }else{
+            //     $user->status = "Offline";
+            //     $user->session_expire_on = "N/A";
+            // }
 
         $res->save = 'OK';
         $res->user = $user;

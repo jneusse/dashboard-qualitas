@@ -32,6 +32,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/admin/users/delete', 'Auth\Administration\UsersController@destroy');
     Route::post('/admin/users/edit', 'Auth\Administration\UsersController@update');
     Route::post('/admin/users/create', 'Auth\Administration\UsersController@store');
+    Route::post('/profile/savefile', 'FilesController@saveImageProfile');
 });
 
 Route::get('/{opcional?}', function () {

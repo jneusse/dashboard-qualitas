@@ -9250,6 +9250,11 @@ td {
   opacity: 0.9;
 }
 
+.main-container {
+  margin-left: 8px !important;
+  margin-right: 8px !important;
+}
+
 .swal2-popup.swal2-toast {
   flex-direction: row;
   align-items: center;

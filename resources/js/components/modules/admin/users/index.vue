@@ -93,7 +93,7 @@
                         <div class="col s12">
                             <div class="input-field">
                                 <i class="material-icons prefix">account_circle</i>
-                                <input type="text" v-model="formEditUser.name" required>
+                                <input id="name" type="text" v-model="formEditUser.name" required>
                                 <label for="name" class="active">Nombre
                                     <span class="new badge red" data-badge-caption="" role="alert" style="display: none"></span>
                                 </label>
@@ -105,7 +105,7 @@
                         <div class="col s12">
                             <div class="input-field">
                                 <i class="material-icons prefix">email</i>
-                                <input type="email" v-model="formEditUser.email" required v-on:keyup="errorEditUser = ''">
+                                <input id="email" type="email" v-model="formEditUser.email" required v-on:keyup="errorEditUser = ''">
                                 <label for="email" class="active">Correo electrónico
                                     <template v-if="!validEmail && formEditUser.email !== ''">
                                         <span class="new badge red" data-badge-caption="" role="alert">Correo electrónico inválido</span>
@@ -122,7 +122,7 @@
                         <div class="col s12">
                             <div class="input-field">
                                 <i class="material-icons prefix">mode_edit</i>
-                                <input type="password" v-model="formEditUser.password" placeholder="********" autocomplete="on">
+                                <input id="password" type="password" v-model="formEditUser.password" placeholder="********" autocomplete="on">
                                 <template v-if="formEditUser.password && formEditUser.password.length < 8">
                                     <span class="new badge red" data-badge-caption="Contraseña debe ser al menos 8 caracteres" role="alert"></span>
                                 </template>
@@ -136,7 +136,7 @@
                         <div class="col s12">
                             <div class="input-field">
                                 <i class="material-icons prefix">mode_edit</i>
-                                <input type="password" v-model="formEditUser.passwordConfirm" :disabled="(formEditUser.password.length > 7) ? false: true"  placeholder="********" autocomplete="on">
+                                <input id="password-confirm" type="password" v-model="formEditUser.passwordConfirm" :disabled="(formEditUser.password.length > 7) ? false: true"  placeholder="********" autocomplete="on">
                                 <template v-if="formEditUser.passwordConfirm && formEditUser.passwordConfirm.length > 7 && formEditUser.password !== formEditUser.passwordConfirm">
                                     <span class="new badge red" data-badge-caption="Las contraseñas no coinciden" role="alert"></span>
                                 </template>
@@ -415,11 +415,11 @@ export default {
                 axios.post(url, {'id': id})
                     .then( res => {
                         if(res.data.status == 'OK'){
-                            Swal.fire({
-                            title: 'Usuario eliminado exitosamente',
-                            timer: 1500,
-                            icon: 'success'
-                        })
+                                Swal.fire({
+                                    title: 'Usuario eliminado exitosamente',
+                                    timer: 1500,
+                                    icon: 'success'
+                                })
                             this.getUsers(this.pagination.current_page)
                         }else{
                             me.$message({

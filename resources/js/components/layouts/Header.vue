@@ -14,7 +14,10 @@
                             <!-- Dropdown Structure -->
                             <ul id="dropdown1" class="dropdown-content">
                                 <!-- <li><a class="black-text" href="#"><img class="circle" alt="profile" width="15%" height="15%" src="#"> Mi cuenta</a></li> -->
-                                <li><a class="black-text" href="#">Mi cuenta</a></li>
+                                <router-link :to="{name: 'mi-perfil'}" class="nav-link active">
+                                    <li><a class="black-text" href="#">Mi cuenta</a></li>
+                                </router-link>
+
                                 <li class="divider"></li>
                                 <li>
                                     <a class="dropdown-item black-text" @click.prevent="logout" v-loading.fullscreen.lock="fullscreenLoading">Logout</a>

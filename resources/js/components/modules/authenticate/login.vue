@@ -81,7 +81,7 @@ export default {
             }
             this.fullscreenLoading= true
             axios.post('/authenticate/login', params)
-                .then(res=>{
+                .then( res =>{
                     if(res.data.user){
                         // console.log(res.data.user)
                         localStorage.setItem('authUser', JSON.stringify(res.data.user))
@@ -99,8 +99,8 @@ export default {
                     }
 
                 })
-                .catch((err)=>{
-                    console.log(err.response.status);
+                .catch( err =>{
+                    console.log(err.response);
                     this.fullscreenLoading = false
                     if(err.response.data.errors.email[0]){
                         console.log('email');

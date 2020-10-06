@@ -78,6 +78,15 @@ export default new Router({
                 verificarPermisions(to, from, next)
             }
         },
+        {
+            path: '/mi-perfil',
+            name: 'mi-perfil',
+            component: require('./components/modules/profile/profile.vue').default,
+            beforeEnter: (to, from, next) => {
+                verificarAcceso(to, from, next)
+                verificarPermisions(to, from, next)
+            }
+        },
         // { path: '/cliente', component: require('./components/modulos/cliente/index.vue').default },
         // { path: '/pedido', component: require('./components/modulos/pedido/index.vue').default },
         // { path: '/permiso', component: require('./components/modulos/permiso/index.vue').default },

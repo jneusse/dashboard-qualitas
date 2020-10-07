@@ -93,10 +93,5 @@
         }
     }
 </script>
-<style scoped>
-.background-color{
-    background-color: #64B5F6;
-    /* min-height: 250px !important;
-    padding-bottom: 250px !important; */
-}
+<style>
 </style>

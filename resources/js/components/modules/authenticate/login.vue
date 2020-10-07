@@ -10,7 +10,7 @@
                         <div class="col s12">
                             <div class="input-field ">
                                 <i class="material-icons prefix">email</i>
-                                <input id="email" type="email" v-model="formLogin.email" required autocomplete="email" autofocus @click.prevent="this.spanMessage = ''">
+                                <input id="email" type="email" v-model="formLogin.email" required autocomplete="email" autofocus @click.prevent="spanMessage = ''">
                                     <template v-if="!validEmail && formLogin.email != ''">
                                         <span class="new badge red" role="alert" data-badge-caption="">Correo electrónico inválido</span>
                                     </template>
@@ -43,7 +43,7 @@
                     <div class="row">
                         <div class="col s12">
                             <div class="input-field right">
-                                <button type="submit" class="waves-effect waves-light btn" @click.prevent="validateLogin" v-loading.fullscreen.lock="fullscreenLoading">
+                                <button type="submit" class="waves-effect waves-light btn" @click.prevent="validateLogin" :disabled="(!formLogin.email || !formLogin.password) ? true : false" v-loading.fullscreen.lock="fullscreenLoading">
                                     Sign in
                                 </button>
                             </div>

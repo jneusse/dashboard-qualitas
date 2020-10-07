@@ -155,6 +155,7 @@ export default {
                         if(res.data.save == 'OK'){
                             localStorage.setItem('authUser', JSON.stringify(res.data.user))
                             this.getUserAuth()
+                            this.$root.$emit('userAuth', res.data.user)
                             Swal.fire({
                                 title: 'Imagen guardada exitosamente',
                                 timer: 1500,
@@ -213,6 +214,7 @@ export default {
                         })
                         localStorage.setItem('authUser', JSON.stringify(res.data.user))
                         this.getUserAuth()
+                        this.$root.$emit('userAuth', res.data.user)
                     }else if(res.data.save == 'error'){
                         this.errorEditUser = res.data.errors.email[0]
                     }

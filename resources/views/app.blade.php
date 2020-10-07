@@ -22,17 +22,6 @@
 </head>
 <body>
     <div id="app">
-        {{-- @php
-            $carbon = new \Carbon\Carbon();
-            $expire = $carbon->now()->addMinute(15);
-            $date = $carbon->now();
-            $dd = 'false';
-            if($date < $expire){
-                $dd = 'true';
-            }
-        @endphp
-        {{$expire}}
-        {{$dd}} --}}
 
         @if (Auth::user())
             <App ruta="{{route('basepath')}}" auth="{{Auth::user()}}"/>

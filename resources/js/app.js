@@ -15,15 +15,21 @@ import 'element-ui/lib/theme-chalk/index.css';
 import locale from 'element-ui/lib/locale/lang/es'
 
 Vue.use(ElementUI, { locale })
-import Vuesax from 'vuesax'
 
-import 'vuesax/dist/vuesax.css' //Vuesax styles
-Vue.use(Vuesax, {
-  // options here
-})
+/** If Vuesax */
+// import Vuesax from 'vuesax'
+
+// import 'vuesax/dist/vuesax.css' //Vuesax styles
+// Vue.use(Vuesax, {
+//   // options here
+// })
 
 import Swal from 'sweetalert2/src/sweetalert2.js'
-window.Swal = Swal;
+window.Swal = Swal
+/** If vue-sweetalert2 */
+// import VueSweetalert2 from 'vue-sweetalert2'
+// Vue.use(VueSweetalert2);
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -43,7 +49,6 @@ Vue.component('Auth', require('./components/Auth.vue').default);
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-require('./material.js')
 import router from './routes'
 const app = new Vue({
     el: '#app',

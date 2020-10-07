@@ -10,7 +10,7 @@
                         <div class="col s12">
                             <div class="input-field ">
                                 <i class="material-icons prefix">email</i>
-                                <input id="email" type="email" v-model="formLogin.email" required autocomplete="email" autofocus>
+                                <input id="email" type="email" v-model="formLogin.email" required autocomplete="email" autofocus @click.prevent="this.spanMessage = ''">
                                     <template v-if="!validEmail && formLogin.email != ''">
                                         <span class="new badge red" role="alert" data-badge-caption="">Correo electrónico inválido</span>
                                     </template>
@@ -102,13 +102,11 @@ export default {
                 .catch( err =>{
                     console.log(err.response);
                     this.fullscreenLoading = false
-                    if(err.response.data.errors.email[0]){
-                        console.log('email');
+                    if(err.response.status == 422){
                         this.spanMessage = err.response.data.errors.email[0]
                     }else if(err.response.status == 419){
                         console.log(err.response.status, 419);
-                        alert('Su session a expirado. La página será recargada')
-                        location.reload()
+                        alert('Su session a expirado. Recargue la página')
                     }
                 })
         },

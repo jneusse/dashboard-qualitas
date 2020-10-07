@@ -1,5 +1,5 @@
 <template>
-    <footer id="footer" class="page-footer">
+    <div class="page-footer">
         <div class="container">
             <div class="row">
             <div class="col l6 s12">
@@ -20,7 +20,7 @@
             </div>
             </div>
         </div>
-        <div id="copyright" class="footer-copyright row">
+        <div id="copyright" class="footer-copyright">
             <div id="bottom" class="container black-text col s12 m6">
                     Derechos reservados © 2016 Kranon S.A. de C.V.
             </div>
@@ -28,12 +28,14 @@
                 <a class="black-text text-lighten-4 right" href="https://www.kranon.com/" target="_blank">www.kranon.com</a>
             </div>
         </div>
-    </footer>
+    </div>
 </template>
 <script>
     export default {
         mounted() {
-            console.log('Component Footer mounted.')
+            // console.log('Component Footer mounted.')
         }
     }
 </script>
+<style>
+</style>

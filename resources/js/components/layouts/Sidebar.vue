@@ -51,6 +51,11 @@
                 fullscreenLoading: false
             }
         },
+        created(){
+            this.$root.$on('userAuth', userAuth =>{
+                this.getUserAuth()
+            })
+        },
         methods:{
             getUserAuth(){
                 this.userAuth = JSON.parse(localStorage.getItem('authUser'))

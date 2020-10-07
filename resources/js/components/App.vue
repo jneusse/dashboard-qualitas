@@ -1,25 +1,17 @@
 <template>
-    <div>
+    <div class="main">
         <!--Nav Bar-->
         <Header :ruta="ruta"/>
         <!--Content-->
             <!--Sidebar-->
             <Sidebar :ruta="ruta" :auth="authUser"/>
-        <main>
-            <div class="content-wrapper">
-                <transition name="slide-fade" modo="in-out">
+            <main>
+                <transition name="el-fade-in-linear">
                     <router-view/>
                 </transition>
-            </div>
-        </main>
-        <!--Footer-->
-        <!-- <Footer/> -->
-
-        <!-- Control Sidebar -->
-        <!-- <aside class="control-sidebar control-sidebar-dark"> -->
-            <!-- Control sidebar content goes here -->
-        <!-- </aside> -->
-        <!-- /.control-sidebar -->
+            </main>
+            <!-- Footer -->
+        <Footer/>
 
     </div>
 </template>
@@ -37,27 +29,17 @@
             }
         },
         mounted(){
-            // console.log(this.auth);
-            // EventBus.$on('verifyAuthenticatedUser', data => {
-            //     this.authUser = data;
-            // })
-        }
+
+        },
+        watch: {
+            '$route' (to, from) {
+                document.title = to.meta.title+" | Laravel" || 'Laravel'
+            },
+            immediate: true
+        },
     }
 </script>
 
 <style>
-    header, main, footer {
-      padding-left: 300px;
-    }
 
-    @media only screen and (max-width : 992px) {
-      header, main, footer {
-        padding-left: 0;
-      }
-    }
-    .page-footer {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-    }
 </style>

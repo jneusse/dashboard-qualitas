@@ -9,7 +9,11 @@ function logout(){
         .then(res=>{
             if(res.data.code == 204 ){
                 localStorage.clear()
-                alert('Su session ha caducado')
+                Swal.fire({
+                    title: 'Su sessión esta apunto de caducar',
+                    timer: 5000,
+                    icon: 'warning'
+                })
                 location.reload()
             }
         })
@@ -17,7 +21,7 @@ function logout(){
             console.log(error.response)
             if(error.response.status == 401){
                 localStorage.clear()
-                $router.push({name: 'login'})
+                this.$router.push({name: 'login'})
                 location.reload()
             }
     })
@@ -37,7 +41,6 @@ function verificarAcceso(to, from, next){
 }
 
 function verificarPermisions(to, from, next){
-    const timeOut = 14*60*1000+30
     let authUser = JSON.parse(localStorage.getItem('authUser'))
     if (authUser.is_admin == 1) {
         next()
@@ -45,6 +48,7 @@ function verificarPermisions(to, from, next){
         next({name: 'login'})
     }
 }
+
 
 export default new Router({
     routes:[
@@ -67,6 +71,10 @@ export default new Router({
             component: require('./components/modules/dashboard/index.vue').default,
             beforeEnter: (to, from, next) => {
                 verificarAcceso(to, from, next)
+            },
+            meta: {
+                auth: true,
+                title: 'Dashboard'
             }
         },
         {
@@ -76,6 +84,10 @@ export default new Router({
             beforeEnter: (to, from, next) => {
                 verificarAcceso(to, from, next)
                 verificarPermisions(to, from, next)
+            },
+            meta: {
+                auth: true,
+                title: 'Usuarios'
             }
         },
         {
@@ -85,6 +97,10 @@ export default new Router({
             beforeEnter: (to, from, next) => {
                 verificarAcceso(to, from, next)
                 verificarPermisions(to, from, next)
+            },
+            meta: {
+                auth: true,
+                title: 'Mi Perfil'
             }
         },
         // { path: '/cliente', component: require('./components/modulos/cliente/index.vue').default },

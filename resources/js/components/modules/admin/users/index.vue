@@ -4,82 +4,90 @@
             <div class="col s12">
                 <div class="row">
                     <div class="col">
-                        <h5>Usuarios</h5>
+                        <h4>Usuarios</h4>
                     </div>
                     <div class="col right">
+                        <h4>
                             <el-tooltip class="item modal-trigger" data-target="modalCreate" effect="dark" content="Agregar usuario" placement="bottom-end">
-                                <a class="btn-floating"><i class="material-icons">add_circle</i></a>
+                                <a class="btn"><i class="material-icons">add_circle</i></a>
                             </el-tooltip>
                             <el-tooltip class="item" effect="dark" content="Buscar" placement="bottom-end">
-                                <a class="btn-floating" @click.prevent="showSearchInput = !showSearchInput"><i class="material-icons">search</i></a>
+                                <a class="btn" @click.prevent="showSearchInput = !showSearchInput"><i class="material-icons">search</i></a>
                             </el-tooltip>
+
+                        </h4>
                     </div>
                 </div>
+                <div class="card">
+                    <div class="pagination">
+                        <template v-if="pagination.total > pagination.per_page">
+                            <ul class="pagination">
+                                <li :class="[(pagination.current_page == 1) ? 'disabled' : '']"><a href="!#" @click.prevent="getUsers(1)"><i class="material-icons">first_page</i></a></li>
+                                <li :class="[(pagination.current_page == 1) ? 'disabled' : '']"><a href="!#" @click.prevent="getUsers(pagination.current_page-1)"><i class="material-icons">chevron_left</i></a></li>
+                                <li v-for="(item, index) in pagesNumber" :key="index" class="hide-on-med-and-down" :class="[(pagination.current_page == item) ? 'active disable' : '']">
+                                    <a href="!#" @click.prevent="getUsers(item)">{{item}}</a>
+                                </li>
+                                <li :class="[(pagination.current_page >= pagination.last_page) ? 'disabled' : '']"> <a href="!#" @click.prevent="getUsers(pagination.current_page+1)"><i class="material-icons">chevron_right</i></a></li>
+                                <li :class="[(pagination.current_page >= pagination.last_page) ? 'disabled' : '']"> <a href="!#" @click.prevent="getUsers(pagination.last_page)"><i class="material-icons">last_page</i></a></li>
+                            </ul>
+                        </template>
+                    </div>
                     <el-collapse-transition>
-                        <div class="row" v-show="showSearchInput">
+                        <div class="row row-search" v-show="showSearchInput">
                             <div class="input-field col s12 transition-box">
                                 <input v-model="userSearch" type="text" placeholder="Buscar . . . " v-on:keyup="getUsers(1)">
                             </div>
                         </div>
                     </el-collapse-transition>
-                <div class="card">
-                    <template v-if="pagination.total > pagination.per_page">
-                        <ul class="pagination right">
-                            <li :class="[pagination.current_page == 1 ? 'disabled' : '']"><a href="!#" @click.prevent="getUsers(1)"><i class="material-icons">first_page</i></a></li>
-                            <li :class="[pagination.current_page == 1 ? 'disabled' : '']"><a href="!#" @click.prevent="getUsers(pagination.current_page-1)"><i class="material-icons">chevron_left</i></a></li>
-                            <li v-for="(item, index) in pagesNumber" :key="index" class="pagination">
-                                <a :class="[pagination.current_page == item ? 'disabled active' : '']" href="!#" @click.prevent="getUsers(item)">{{item}}</a>
-                            </li>
-                            <li :class="[pagination.current_page >= pagination.last_page ? 'disabled' : '']"> <a href="!#" @click.prevent="getUsers(pagination.current_page+1)"><i class="material-icons">chevron_right</i></a></li>
-                            <li :class="[pagination.current_page >= pagination.last_page ? 'disabled' : '']"> <a href="!#" @click.prevent="getUsers(pagination.last_page)"><i class="material-icons">last_page</i></a></li>
-                        </ul>
-                    </template>
-                    <table class="highlight centered" v-loading="tableLoading">
-                        <thead class="head-centered">
-                            <tr>
-                                <th>ID</th>
-                                <th>Nombre</th>
-                                <th>Correo</th>
-                                <th>Tipo</th>
-                                <th>Status</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <template v-if="pagination.data.length">
-                            <tbody>
-                                <tr v-for="(item, index) in pagination.data" :key="index">
-                                    <td v-text="item.id"></td>
-                                    <td v-text="item.name"></td>
-                                    <td v-text="item.email"></td>
-                                    <td v-text="item.userType"></td>
-                                    <td v-text="item.status" :class="[item.status == 'Online' ? 'green-text' : 'red-text']"></td>
-                                    <td>
-                                        <vs-tooltip>
-                                            <el-button type="primary"  class="modal-trigger" data-target="modalEdit" :plain="true" size="mini" @click.prevent="showEditUser(item)">
-                                                <i class="tiny material-icons">edit</i>
-                                            </el-button>
-                                            <template #tooltip>
-                                                Editar
-                                            </template>
-                                        </vs-tooltip>
-                                        <vs-tooltip>
-                                            <el-button type="warning" :plain="true" size="mini" @click="deleteUser(item.id)">
-                                                <i class="tiny material-icons">delete</i>
-                                            </el-button>
-                                            <template #tooltip>
-                                                Eliminar
-                                            </template>
-                                        </vs-tooltip>
-                                    </td>
+                    <div class="overflow-x">
+                        <table class="highlight centered" v-loading="tableLoading">
+                            <thead class="head-centered">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>Correo</th>
+                                    <th>Tipo</th>
+                                    <th>Status</th>
+                                    <th>Acciones</th>
                                 </tr>
-                            </tbody>
-                        </template>
-                        <template v-else>
-                            <div class="center-align">
-                                <h6>No se encontraron usuarios</h6>
-                            </div>
-                        </template>
-                    </table>
+                            </thead>
+                            <template v-if="pagination.data.length">
+                                <tbody>
+                                    <tr v-for="(item, index) in pagination.data" :key="index">
+                                        <td v-text="item.id"></td>
+                                        <td v-text="item.name"></td>
+                                        <td v-text="item.email"></td>
+                                        <td v-text="item.userType"></td>
+                                        <td v-text="item.status" :class="[item.status == 'Online' ? 'green-text' : 'red-text']"></td>
+                                        <td>
+                                            <vs-tooltip>
+                                                <el-button type="primary"  class="modal-trigger" data-target="modalEdit" :plain="true" size="mini" @click.prevent="showEditUser(item)">
+                                                    <i class="tiny material-icons">edit</i>
+                                                </el-button>
+                                                <template #tooltip>
+                                                    Editar
+                                                </template>
+                                            </vs-tooltip>
+                                            <vs-tooltip>
+                                                <el-button type="warning" :plain="true" size="mini" @click="deleteUser(item.id)">
+                                                    <i class="tiny material-icons">delete</i>
+                                                </el-button>
+                                                <template #tooltip>
+                                                    Eliminar
+                                                </template>
+                                            </vs-tooltip>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </template>
+                            <template v-else>
+                                <div class="center-align">
+                                    <h6>No se encontraron usuarios</h6>
+                                </div>
+                            </template>
+                        </table>
+                    </div>
+
 
                 </div>
             </div>
@@ -257,7 +265,7 @@
                 <div class="row">
                     <div class="col s6">
                         <div class="input-field left">
-                            <a class="btn grey">Cancelar</a>
+                            <a class="btn grey modal-close" @click.prevent="closeModalCreate">Cancelar</a>
                         </div>
                     </div>
                     <div class="col s6">
@@ -456,7 +464,7 @@ export default {
                         this.modalEdit.close()
                         Swal.fire({
                             title: 'Usuario guardado exitosamente',
-                            timer: 1500,
+                            // timer: 1500,
                             icon: 'success'
                         })
                         this.getUsers(this.pagination.current_page)
@@ -486,7 +494,7 @@ export default {
             axios.post(url, params)
                 .then( res=> {
                     if(res.data.save == 'OK'){
-                        this.closeModalEdit()
+                        this.closeModalCreate()
                         Swal.fire({
                             title: 'Usuario creado exitosamente',
                             timer: 1500,
@@ -505,7 +513,7 @@ export default {
                     }
                 })
         },
-        closeModalEdit(){
+        closeModalCreate(){
             this.modalCreate = M.Modal.getInstance($('#modalCreate'));
             this.modalCreate.close()
             this.formCreateUser.name = ''
@@ -522,5 +530,11 @@ export default {
 .vs-tooltip-content{
     display: inline !important;
     max-height: 47px !important;
+}
+.overflow-x{
+    overflow-x: auto !important;
+}
+.row-search{
+    padding: 0px 6% 0 6% !important;
 }
 </style>

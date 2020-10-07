@@ -3823,7 +3823,7 @@ __webpack_require__.r(__webpack_exports__);
       if (this.userAuth.photo) {
         this.userAuth.photo = this.userAuth.photo;
       } else {
-        this.userAuth.photo = '/storage/profile-images/default-user.png';
+        this.userAuth.photo = '/images/default-user.png';
       } // console.log(this.userAuth.photo);
 
     },
@@ -4746,7 +4746,7 @@ __webpack_require__.r(__webpack_exports__);
       if (this.userAuth.photo) {
         this.profilePhoto = this.userAuth.photo;
       } else {
-        this.profilePhoto = '/storage/profile-images/default-user.png';
+        this.profilePhoto = '/images/default-user.png';
       }
 
       this.formEditUser.name = this.userAuth.name;
@@ -113174,8 +113174,8 @@ function verificarPermisions(to, from, next) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /var/www/html/vue-laravel-dashboard/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /var/www/html/vue-laravel-dashboard/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /var/www/html/System-DHL/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /var/www/html/System-DHL/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

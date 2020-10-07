@@ -62,7 +62,7 @@
                 if(this.userAuth.photo){
                     this.userAuth.photo = this.userAuth.photo
                 }else{
-                    this.userAuth.photo = '/storage/profile-images/default-user.png'
+                    this.userAuth.photo = '/images/default-user.png'
                 }
                 // console.log(this.userAuth.photo);
             },

@@ -134,7 +134,7 @@ export default {
             if(this.userAuth.photo){
                 this.profilePhoto = this.userAuth.photo
             }else{
-                this.profilePhoto = '/storage/profile-images/default-user.png'
+                this.profilePhoto = '/images/default-user.png'
             }
             this.formEditUser.name = this.userAuth.name
             this.formEditUser.email = this.userAuth.email

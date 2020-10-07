@@ -53,7 +53,7 @@ function verificarPermisions(to, from, next){
 export default new Router({
     routes:[
         {
-            path: '/login',
+            path: '/',
             name: 'login',
             component: require('./components/modules/authenticate/login.vue').default,
             beforeEnter: (to,from, next) => {

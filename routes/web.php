@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('/authenticate/login', 'Auth\LoginController@login');
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth', 'OnlyAjax']], function () {
     // Authentication
     Route::post('/authenticate/logout', 'Auth\LoginController@logout')->name('logout');
     Route::get('/user/getAuthenticateUser', function () {

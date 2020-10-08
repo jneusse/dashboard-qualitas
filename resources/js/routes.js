@@ -9,11 +9,6 @@ function logout(){
         .then(res=>{
             if(res.data.code == 204 ){
                 localStorage.clear()
-                Swal.fire({
-                    title: 'Su sessión esta apunto de caducar',
-                    timer: 5000,
-                    icon: 'warning'
-                })
                 location.reload()
             }
         })
@@ -28,12 +23,19 @@ function logout(){
 }
 
 function verificarAcceso(to, from, next){
-    const timeOut = 14*60*1000+30
+    const timeOut = 14*60*1000+45
     let authUser = JSON.parse(localStorage.getItem('authUser'))
-    setTimeout(() => {
-        logout()
-    }, timeOut);
     if (authUser) {
+        setTimeout(() => {
+            Swal.fire({
+                title: 'Su sessión esta apunto de caducar',
+                timer: 5000,
+                icon: 'warning'
+            })
+        }, timeOut-(60*1000));
+        setTimeout(() => {
+            logout()
+        }, timeOut);
         next()
     }else{
         next({name: 'login'})
@@ -45,7 +47,7 @@ function verificarPermisions(to, from, next){
     if (authUser.is_admin == 1) {
         next()
     }else{
-        next({name: 'login'})
+        next({name: 'dashboard.index'})
     }
 }
 
@@ -102,39 +104,7 @@ export default new Router({
                 auth: true,
                 title: 'Mi Perfil'
             }
-        },
-        // { path: '/cliente', component: require('./components/modulos/cliente/index.vue').default },
-        // { path: '/pedido', component: require('./components/modulos/pedido/index.vue').default },
-        // { path: '/permiso', component: require('./components/modulos/permiso/index.vue').default },
-        // { path: '/permiso/crear', component: require('./components/modulos/permiso/create.vue').default },
-        // {   path: '/permiso/editar/:id',
-        //     name: 'permiso.editar',
-        //     component: require('./components/modulos/permiso/edit.vue').default,
-        //     props: true
-        // },
-        // { path: '/producto', component: require('./components/modulos/producto/index.vue').default },
-
-        // { path: '/usuario', component: require('./components/modulos/usuario/index.vue').default },
-        // { path: '/usuario/crear', component: require('./components/modulos/usuario/create.vue').default },
-        // {   path: '/usuario/ver/:id',
-        //     name: 'usuario.ver',
-        //     component: require('./components/modulos/usuario/view.vue').default,
-        //     props: true
-        // },
-        // {   path: '/usuario/editar/:id',
-        //     name: 'usuario.editar',
-        //     component: require('./components/modulos/usuario/edit.vue').default,
-        //     props: true
-        // },
-
-        // { path: '/rol', component: require('./components/modulos/rol/index.vue').default },
-        // { path: '/rol/crear', component: require('./components/modulos/rol/create.vue').default },
-        // {   path: '/rol/editar/:id',
-        //     name: 'rol.editar',
-        //     component: require('./components/modulos/rol/edit.vue').default,
-        //     props: true
-        // },
-        // { path: '/reporte', component: require('./components/modulos/reporte/index.vue').default }
+        }
     ],
     mode:'history',
     linkExactActiveClass: 'active'

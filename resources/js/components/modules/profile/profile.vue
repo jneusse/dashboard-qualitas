@@ -8,7 +8,7 @@
                     </div>
                 </div>
                 <div class="row margin-1">
-                    <div class="col s12 l3">
+                    <div class="col s12 m6 l3">
                         <div class="card card-min">
                             <div class="card-image">
                                 <img :src="profilePhoto" :alt="userAuth.name" @click.prevent="selectFile">
@@ -20,7 +20,7 @@
                             <button class="btn" @click.prevent="selectFile">Cambiar</button>
                         </div>
                     </div>
-                    <div class="col s12 l9">
+                    <div class="col s12 m6 l9">
                         <form>
                             <div class="row">
                                 <div class="input-field col s12 l7">
@@ -237,6 +237,6 @@ export default {
 
 <style>
 .card-min{
-    width: 250px !important;
+    max-width: 250px !important;
 }
 </style>

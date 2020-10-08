@@ -9,20 +9,23 @@ window.$ = require('jquery')
 window.Vue = require('vue');
 window.axios = require('axios');
 require('materialize-css');
-import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
+// import ElementUI from 'element-ui';
+// import 'element-ui/lib/theme-chalk/index.css';
+import ElementUI from 'element-ui'
+// import '../sass/element-variables.scss'
 
 import locale from 'element-ui/lib/locale/lang/es'
+
 
 Vue.use(ElementUI, { locale })
 
 /** If Vuesax */
-// import Vuesax from 'vuesax'
+import Vuesax from 'vuesax'
 
-// import 'vuesax/dist/vuesax.css' //Vuesax styles
-// Vue.use(Vuesax, {
-//   // options here
-// })
+import 'vuesax/dist/vuesax.css' //Vuesax styles
+Vue.use(Vuesax, {
+  // options here
+})
 
 import Swal from 'sweetalert2/src/sweetalert2.js'
 window.Swal = Swal

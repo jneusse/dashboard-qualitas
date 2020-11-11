@@ -12,7 +12,7 @@
                                 <a class="btn"><i class="material-icons">add_circle</i></a>
                             </el-tooltip>
                             <el-tooltip class="item" effect="dark" content="Buscar" placement="bottom-end">
-                                <a class="btn" @click.prevent="showSearchInput = !showSearchInput"><i class="material-icons">search</i></a>
+                                <a class="btn" @click.prevent="showSearch"><i class="material-icons">search</i></a>
                             </el-tooltip>
 
                         </h4>
@@ -35,7 +35,7 @@
                     <el-collapse-transition>
                         <div class="row row-search" v-show="showSearchInput">
                             <div class="input-field col s12 transition-box">
-                                <input v-model="userSearch" type="text" placeholder="Buscar . . . " v-on:keyup="getUsers(1)">
+                                <input id="searchInput" v-model="userSearch" type="text" placeholder="Buscar . . . " v-on:keyup="getUsers(1)">
                             </div>
                         </div>
                     </el-collapse-transition>
@@ -364,6 +364,12 @@ export default {
         }
     },
     methods:{
+        showSearch(){
+            this.showSearchInput = !this.showSearchInput
+            setTimeout(() => {
+                document.getElementById('searchInput').focus()
+            }, 500);
+        },
         getUsers(page = 1){
             let url = '/admin/users'
             let params = {

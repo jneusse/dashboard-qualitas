@@ -29,6 +29,60 @@
             }
         },
         mounted(){
+                var alert = setTimeout(() => {
+                        Swal.fire({
+                            title: 'Su sessión esta apunto de caducar',
+                            timer: 5000,
+                            icon: 'warning'
+                        })
+                        }, 14*60*1000);
+                var logout = setTimeout(() => {
+                    var url = '/authenticate/logout'
+                    axios.post(url)
+                        .then(res=>{
+                            if(res.data.code == 204 ){
+                                localStorage.clear()
+                                location.reload()
+                            }
+                        })
+                        .catch(error=>{
+                            console.log(error.response)
+                            if(error.response.status == 401){
+                                localStorage.clear()
+                                this.$router.push({name: 'login'})
+                                location.reload()
+                            }
+                        })
+                    }, (14*60*1000)+(30*1000));
+                $('body').click(function(){
+                    clearTimeout(alert)
+                    clearTimeout(logout)
+                    alert = setTimeout(() => {
+                        Swal.fire({
+                        title: 'Su sessión esta apunto de caducar',
+                        timer: 5000,
+                        icon: 'warning'
+                    })
+                    }, 14*60*1000);
+                    logout = setTimeout(() => {
+                        var url = '/authenticate/logout'
+                        axios.post(url)
+                            .then(res=>{
+                                if(res.data.code == 204 ){
+                                    localStorage.clear()
+                                    location.reload()
+                                }
+                            })
+                            .catch(error=>{
+                                console.log(error.response)
+                                if(error.response.status == 401){
+                                    localStorage.clear()
+                                    this.$router.push({name: 'login'})
+                                    location.reload()
+                                }
+                            })
+                    }, (14*60*1000)+(30*1000));
+                })
 
         },
         watch: {

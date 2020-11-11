@@ -23,19 +23,8 @@ function logout(){
 }
 
 function verificarAcceso(to, from, next){
-    const timeOut = 14*60*1000+45
     let authUser = JSON.parse(localStorage.getItem('authUser'))
     if (authUser) {
-        setTimeout(() => {
-            Swal.fire({
-                title: 'Su sessión esta apunto de caducar',
-                timer: 5000,
-                icon: 'warning'
-            })
-        }, timeOut-(60*1000));
-        setTimeout(() => {
-            logout()
-        }, timeOut);
         next()
     }else{
         next({name: 'login'})

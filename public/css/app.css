@@ -9177,7 +9177,7 @@ input[type=range]::-ms-thumb {
 
 .card-panel {
   border-radius: 0 !important;
-  background-color: #42A5F5 !important;
+  background-color: #64B5F6 !important;
 }
 
 .full-width {
@@ -9306,6 +9306,10 @@ main,
 
 .footer-copyright {
   padding-right: 14px !important;
+}
+
+.background-color {
+  background-color: #64B5F6;
 }
 
 .swal2-popup.swal2-toast {

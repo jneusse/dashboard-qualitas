@@ -124,3 +124,8 @@ header, main, .page-footer {
 .background-color{
     background-color: $primary-color;
 }
+div .pagination{
+    margin-top: 8px !important;
+    padding: 5px !important;
+    text-align: right;
+}

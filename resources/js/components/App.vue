@@ -87,7 +87,7 @@
         },
         watch: {
             '$route' (to, from) {
-                document.title = to.meta.title+" | Laravel" || 'Laravel'
+    document.title = to.meta.title+" | Qualitas" || 'Qualitas'
             },
             immediate: true
         },

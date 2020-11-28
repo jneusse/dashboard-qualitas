@@ -69,6 +69,32 @@ export default new Router({
             }
         },
         {
+            path: '/interactions',
+            name: 'dashboard.interaction',
+            component: require('./components/modules/dashboard/interactions.vue').default,
+            props: true,
+            beforeEnter: (to, from, next) => {
+                verificarAcceso(to, from, next)
+            },
+            meta: {
+                auth: true,
+                title: 'Interacciones'
+            }
+        },
+        {
+            path: '/interactions/:id',
+            name: 'dashboard.interaction',
+            component: require('./components/modules/dashboard/interactions.vue').default,
+            props: true,
+            beforeEnter: (to, from, next) => {
+                verificarAcceso(to, from, next)
+            },
+            meta: {
+                auth: true,
+                title: 'Interacciones'
+            }
+        },
+        {
             path: '/usuarios',
             name: 'admin.usuarios.index',
             component: require('./components/modules/admin/users/index.vue').default,

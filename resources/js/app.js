@@ -5,6 +5,17 @@
  */
 
 // require('./bootstrap');
+import Echo from 'laravel-echo'
+window.Pusher = require('pusher-js')
+
+window.Echo = new Echo({
+    broadcaster: 'pusher',
+    key: '9de134570b73f4fddbf2',
+    cluster: 'us2',
+    forceTLS: true
+  });
+
+require('chart.js')
 window.$ = require('jquery')
 window.Vue = require('vue');
 window.axios = require('axios');
@@ -21,10 +32,15 @@ Vue.use(ElementUI, { locale })
 
 /** If Vuesax */
 import Vuesax from 'vuesax'
-
 import 'vuesax/dist/vuesax.css' //Vuesax styles
 Vue.use(Vuesax, {
-  // options here
+    colors: {
+        primary:'#5b3cc4',
+        success:' #38c172',
+        danger:' #e3342f',
+        warning:' #f6993f',
+        dark:'rgb(36, 33, 69)'
+      }
 })
 
 import Swal from 'sweetalert2/src/sweetalert2.js'
@@ -63,12 +79,3 @@ window.EventBus = EventBus
 
 M.AutoInit();
 
-
-document.addEventListener('DOMContentLoaded', function() {
-    // window.addEventListener('click', function(e){
-    //     if(e.target == document.querySelector('#modalCreate'))
-    //     document.querySelector('#modalCreate').style.display = 'none'
-    //     console.log("click");
-    // })
-    // console.log(document.querySelector('#modalCreate'));
-});

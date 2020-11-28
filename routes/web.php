@@ -33,7 +33,15 @@ Route::group(['middleware' => ['auth', 'OnlyAjax']], function () {
     Route::post('/admin/users/edit', 'Auth\Administration\UsersController@update');
     Route::post('/admin/users/create', 'Auth\Administration\UsersController@store');
     Route::post('/profile/savefile', 'FilesController@saveImageProfile');
+    // Interactions Routes
+    Route::get('/interactions/getInteractions', 'Auth\InteractionsController@getInteractions');
+    Route::get('/interactions/getTotalInteractions', 'Auth\InteractionsController@getTotalInteractions');
+    Route::get('/interactions/getDetailInteraction', 'Auth\InteractionsController@getDetailInteraction');
+
+
 });
+
+Route::get('/notifications/newInteraction', 'NotificationsController@newInteraction');
 
 Route::get('/{opcional?}', function () {
     return view('app');

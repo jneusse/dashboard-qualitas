@@ -33,6 +33,11 @@
                             <i class="tiny material-icons">dashboard</i>Dashboard
                         </router-link>
                     </li>
+                    <li>
+                        <router-link :to="{name: 'dashboard.interaction'}" class="nav-link active">
+                            <i class="tiny material-icons">assessment</i>Interacciones On-line
+                        </router-link>
+                    </li>
             </ul>
         </li>
         <li><div class="divider"></div></li>
@@ -44,6 +49,20 @@
         props:['ruta', 'auth'],
         mounted() {
             this.getUserAuth()
+
+            Echo.channel('channel-interactions')
+                .listen('AlertInteraction', e => {
+                    let interaction = e.interaction
+                    const noti = this.$vs.notification({
+                        duration: 'none',
+                        position: 'top-right',
+                        title: 'Nueva Interacción',
+                        text: `<a class='message-noti' href='/interactions/${interaction.id}'>
+                            Call ID: <b>${interaction.callId}</b><br>
+                            Mensaje Texto: <b>${interaction.messageText}</b></a>`
+                    })
+                    console.log(e);
+                })
         },
         data(){
             return{
@@ -94,4 +113,7 @@
     }
 </script>
 <style>
+.message-noti{
+    color: #38c172;
+}
 </style>

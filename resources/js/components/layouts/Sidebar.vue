@@ -23,7 +23,7 @@
                 <template v-if="userAuth.is_admin == 1">
                     <li>
                         <router-link :to="{name: 'admin.usuarios.index'}" class="nav-link active">
-                            <i class="tiny material-icons">group</i>Administracion de Usuarios
+                            <i class="tiny material-icons">group</i>Administración de Usuarios
                         </router-link>
                     </li>
                 </template>

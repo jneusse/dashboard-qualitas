@@ -25,7 +25,6 @@
                                 <a class="btn" @click.prevent="showSearch"><i class="material-icons">search</i></a>
                             </el-tooltip>
                         </h4>
-
                     </div>
 
                 </div>
@@ -45,7 +44,7 @@
                           </template>
                       </div>
                       <div class="col right">
-                          <h6>Total llamadas encontradas <b>{{pagination.total}}</b> <button class="btn btn-small tooltipped btn-excel" data-position="top" data-tooltip="Descargar Excel" @click="getConversationExcel" :disabled="(pagination.total > 0) ? false : true"><i class="tiny material-icons">insert_drive_file</i></button></h6>
+                          <h6>Total llamadas encontradas <b>{{pagination.total}}</b> <button class="btn btn-small tooltipped btn-excel" data-position="top" data-tooltip="Descargar Excel" @click="getConversationExcel" :disabled="(pagination.total > 0) ? true : true" hidden><i class="tiny material-icons">insert_drive_file</i></button></h6>
                       </div>
                     </div>
                     <el-collapse-transition>
